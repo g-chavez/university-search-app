@@ -47,7 +47,7 @@ export default function Home() {
         setIsLoadding(false);
       })
       .catch(error => {
-        console.error(error);
+        setError(error.message);
         setIsLoadding(false);
       });
   }
