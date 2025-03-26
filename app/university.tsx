@@ -1,6 +1,6 @@
 'use client';
-import { Box, Link, Flex, Card,Text } from "@radix-ui/themes";
-import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import { Box, Link, Flex, Card,Text, IconButton } from "@radix-ui/themes";
+import { ArrowTopRightIcon, InfoCircledIcon } from "@radix-ui/react-icons";
 
 export default function University({ name, webpage }: { name: string, webpage: string }) {
 
@@ -12,7 +12,16 @@ export default function University({ name, webpage }: { name: string, webpage: s
             <Text as="div" size="2" weight="bold">
               {name}
             </Text>
-            <Link size="2" href={webpage} target="blank">{webpage} <ArrowTopRightIcon></ArrowTopRightIcon></Link>
+            <Flex>
+              <Box minWidth="450px">
+                <Link size="2" href={webpage} target="blank">{webpage} <ArrowTopRightIcon></ArrowTopRightIcon></Link>
+              </Box>
+              <Box>
+                <IconButton variant="ghost">
+                  <InfoCircledIcon width="20" height="20" />
+                </IconButton>
+              </Box>
+            </Flex>
           </Box>
         </Flex>
       </Card>
