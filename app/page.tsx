@@ -3,12 +3,13 @@ import { Box, Button, Flex, Card, Grid, TextField, Text } from "@radix-ui/themes
 import { PersonIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import Home from "./home";
+import Banner from "./banner";
 
 export default function Login() {
 
   const myStyle = {
     fontFamily: "system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif",
-    height:"100vh",
+    height:"60vh",
     "text-align":"center",
     display:"flex",
     "flex-direction":"column",
@@ -36,36 +37,43 @@ export default function Login() {
     }
   }
   if (isLoggedIn) {
-    return <Home/>
+    return (
+      <div>
+        <Banner/>
+        <Home/>
+      </div>);
 
   } else {
     return (
-      <Box style={myStyle}>
-        <Card size="4">
-          <Flex direction="column" gap="3" width={"300px"}>
-            <Grid gap="1">
-            <TextField.Root placeholder="User" onChange={(e) => setUser(e.target.value)}>
-              <TextField.Slot>
-                <PersonIcon height="16" width="16" />
-              </TextField.Slot>
-            </TextField.Root>
-            <TextField.Root type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}>
-              <TextField.Slot>
-                <PersonIcon height="16" width="16" />
-              </TextField.Slot>
-            </TextField.Root>
-            </Grid>
-            <Grid columns="1" gap="1">
-              <Button variant="surface" onClick={() => { handleLogin() }}>Login</Button>
-            </Grid>
-            <Text>
-            <div>
-              {error && <div><Text color='crimson'>{error}</Text></div>}
-            </div>
-            </Text>
-          </Flex>
-        </Card>
-      </Box>
+      <div>
+        <Banner/>
+        <Box style={myStyle}>
+          <Card size="4">
+            <Flex direction="column" gap="3" width={"300px"}>
+              <Grid gap="1">
+              <TextField.Root placeholder="User" onChange={(e) => setUser(e.target.value)}>
+                <TextField.Slot>
+                  <PersonIcon height="16" width="16" />
+                </TextField.Slot>
+              </TextField.Root>
+              <TextField.Root type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}>
+                <TextField.Slot>
+                  <PersonIcon height="16" width="16" />
+                </TextField.Slot>
+              </TextField.Root>
+              </Grid>
+              <Grid columns="1" gap="1">
+                <Button variant="surface" onClick={() => { handleLogin() }}>Login</Button>
+              </Grid>
+              <Text>
+              <div>
+                {error && <div><Text color='crimson'>{error}</Text></div>}
+              </div>
+              </Text>
+            </Flex>
+          </Card>
+        </Box>
+      </div>
     );
   }
 }

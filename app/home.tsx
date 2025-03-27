@@ -1,6 +1,6 @@
 'use client';
-import { Box, Button, Flex, Card, Grid, TextField, Text, Skeleton } from "@radix-ui/themes";
-import { ArrowLeftIcon, ArrowRightIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { Box, Button, Flex, Card, Grid, TextField, Text, Skeleton, IconButton } from "@radix-ui/themes";
+import { ArrowLeftIcon, ArrowRightIcon, ExitIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import axios from 'axios';
 import University from "./university";
@@ -9,7 +9,7 @@ export default function Home() {
 
   const myStyle = {
     fontFamily: "system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif",
-    height:"100vh",
+    height:"70vh",
     textAlign:"center",
     display:"flex",
     flexDirection:"column",
@@ -71,6 +71,10 @@ export default function Home() {
 
   }
 
+  function handleExit () {
+    location.reload();
+  }
+
   return (
         <Box style={myStyle}>
           <Card size="4">
@@ -98,7 +102,7 @@ export default function Home() {
                   </Text>
                 }
                 { result && result.length > 0 && currentPageElements.map( (item) => 
-                  <University name={item.name} webpage={item.web_pages[0]} key={i++}/>
+                  <University name={item.name} webpage={item.web_pages[0]} domain={item.domains[0]} alpha_two_code={item.alpha_two_code} key={i++}/>
                 ) }
 
                 { result && result.length > 0 && currentPageElements.length > 0 && 
@@ -111,6 +115,11 @@ export default function Home() {
                   </Button>
                 </Grid>}
               </Skeleton>
+              <Box my={"2"}>
+                <IconButton variant="ghost">
+                  <ExitIcon width={20} height={20} onClick={handleExit}></ExitIcon>
+                </IconButton>
+              </Box>
             </Flex>
           </Card>
         </Box>
