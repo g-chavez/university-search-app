@@ -2,8 +2,8 @@
 import { Box, Button, Flex, Card, Grid, TextField, Text } from "@radix-ui/themes";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
-import Home from "./home";
-import Banner from "./banner";
+import Home from "./components/home/home";
+import Banner from "./components/banner/banner";
 
 export default function Login() {
 
