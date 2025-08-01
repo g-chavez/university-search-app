@@ -3,7 +3,7 @@ import { Box, Button, Flex, Card, Grid, TextField, Text, Skeleton, IconButton } 
 import { ArrowLeftIcon, ArrowRightIcon, ExitIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import axios from 'axios';
-import University from "./university";
+import University from "../university/university";
 
 export default function Home() {
 
