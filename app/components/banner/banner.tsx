@@ -2,7 +2,7 @@
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Image from "next/image";
-import Icon from "@mui/material/Icon";
+import Search from "@mui/icons-material/Search";
 
 export default function Banner() {
   const image = "/logo.webp";
@@ -25,7 +25,7 @@ export default function Banner() {
           height={100}
         />
         <h1>University Search</h1>
-        <Icon sx={{ fontSize: 60 }}>search</Icon>
+        <Search sx={{ fontSize: 60 }}/>
       </Stack>
     </Box>
   );

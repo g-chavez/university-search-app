@@ -9,7 +9,7 @@ import LinkSharp from "@mui/icons-material/LinkSharp";
 
 export default function University({ name, webpage, domain, alpha_two_code }: { name: string, webpage: string, domain: string, alpha_two_code: string }) {
   return (
-    <Box maxWidth="500px" marginTop="10px">
+    <Box width="400px" marginTop="10px">
       <Card>
         <CardContent>
           <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 18 }}>
@@ -23,7 +23,7 @@ export default function University({ name, webpage, domain, alpha_two_code }: { 
           </Typography>
         </CardContent>
         <CardActions>
-          <Link href={webpage} underline="hover">
+          <Link href={webpage} underline="hover" target="_blank">
             <LinkSharp fontSize="small"/>
             {webpage}
           </Link>
