@@ -1,77 +1,99 @@
-'use client';
-import { Box, Button, Flex, Card, Grid, TextField, Text } from "@radix-ui/themes";
-import { PersonIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
+"use client";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import { SetStateAction, useState } from "react";
 import Home from "./components/home/home";
 import Banner from "./components/banner/banner";
+import InputAdornment from "@mui/material/InputAdornment";
+import Button from "@mui/material/Button";
+import Person from "@mui/icons-material/Person";
+import FormHelperText from "@mui/material/FormHelperText";
 
 export default function Login() {
-
-  const myStyle = {
-    fontFamily: "system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif",
-    height:"60vh",
-    "text-align":"center",
-    display:"flex",
-    "flex-direction":"column",
-    alignItems:"center",
-    justifyContent:"center"
-  };
-
-
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleLogin() {
-
-    if (user.trim() === '' || password.trim() === '') {
-      setError('All fields are required.');
-    }
-    else if (user.trim() !== 'gcm' || password.trim() !== 'gcm') {
-      setError('User and / or password are incorrect.');
-    }
-    else {
+    if (user.trim() === "" || password.trim() === "") {
+      setError("All fields are required.");
+    } else if (user.trim() !== "gcm" || password.trim() !== "gcm") {
+      setError("User and / or password are incorrect.");
+    } else {
       setIsLoggedIn(true);
-      setError('');
+      setError("");
     }
   }
   if (isLoggedIn) {
     return (
       <div>
-        <Banner/>
-        <Home/>
-      </div>);
-
+        <Banner />
+        <Home />
+      </div>
+    );
   } else {
     return (
       <div>
-        <Banner/>
-        <Box style={myStyle}>
-          <Card size="4">
-            <Flex direction="column" gap="3" width={"300px"}>
-              <Grid gap="1">
-              <TextField.Root placeholder="User" onChange={(e) => setUser(e.target.value)}>
-                <TextField.Slot>
-                  <PersonIcon height="16" width="16" />
-                </TextField.Slot>
-              </TextField.Root>
-              <TextField.Root type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}>
-                <TextField.Slot>
-                  <PersonIcon height="16" width="16" />
-                </TextField.Slot>
-              </TextField.Root>
-              </Grid>
-              <Grid columns="1" gap="1">
-                <Button variant="surface" onClick={() => { handleLogin() }}>Login</Button>
-              </Grid>
-              <Text>
-              <div>
-                {error && <div><Text color='crimson'>{error}</Text></div>}
-              </div>
-              </Text>
-            </Flex>
-          </Card>
+        <Banner />
+        <Box>
+          <Stack
+            direction="column"
+            spacing={4}
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <TextField
+              label="Email"
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Person />
+                    </InputAdornment>
+                  ),
+                },
+              }}
+              onChange={(e: { target: { value: SetStateAction<string> } }) =>
+                setUser(e.target.value)
+              }
+            />
+
+            <TextField
+              type="password"
+              label="Password"
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Person />
+                    </InputAdornment>
+                  ),
+                },
+              }}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div>
+              {error && (
+                <div>
+                  <FormHelperText id="component-error-text" error>
+                    {error}
+                  </FormHelperText>
+                </div>
+              )}
+            </div>
+
+            <Button
+              onClick={() => {
+                handleLogin();
+              }}
+            >
+              Login
+            </Button>
+          </Stack>
         </Box>
       </div>
     );
